@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+  <!-- Titre -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h1 class="fw-bold text-primary">📊 Dashboard Administratif</h1>
+      <p class="text-muted">Vue d’ensemble des fichiers reçus et analyses économiques</p>
+    </div>
+    <a href="/" class="btn btn-outline-primary">
+      <i class="bi bi-arrow-left"></i> Retour à l’accueil
+    </a>
+  </div>
+
+  <!-- Cartes de Statistiques -->
+  <div class="row g-4 mb-5">
+    <div class="col-md-4">
+      <div class="card border-start border-primary border-5 shadow-sm h-100">
+        <div class="card-body">
+          <p class="text-muted mb-1">📁 Inflation 2023</p>
+          <h3 class="fw-bold text-primary">{{ fichiers_count|default:"23,8" }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card border-start border-success border-5 shadow-sm h-100">
+        <div class="card-body">
+          <p class="text-muted mb-1">📈 Masse monetaire 2023</p>
+          <h3 class="fw-bold text-success">{{ analyses_count|default:"36230424" }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card border-start border-warning border-5 shadow-sm h-100">
+        <div class="card-body">
+          <p class="text-muted mb-1">$ Taux de change 2023</p>
+          <h3 class="fw-bold text-warning">{{ agents_count|default:"2668,95" }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section Fichiers -->
+  <div class="card shadow border-0">
+    <div class="card-header bg-light d-flex justify-content-between align-items-center">
+      <h5 class="mb-0">🗂️ Liste des fichiers téléversés</h5>
+      <a href="{% url 'upload' %}" class="btn btn-primary">
+        <i class="bi bi-upload"></i> Ajouter un fichier
+      </a>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light text-muted">
+          <tr>
+            <th>#</th>
+            <th>Nom</th>
+            <th>Date</th>
+            <th>Observation</th>
+            <th class="text-end">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for fichier in fichiers %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td class="fw-semibold">{{ fichier.nom }}</td>
+            <td>{{ fichier.date }}</td>
+            <td class="text-muted">{{ fichier.observations }}</td>
+            <td class="text-end">
+              <a href="{{ fichier.url }}" class="btn btn-sm btn-outline-primary me-2">
+                <i class="bi bi-eye"></i> Voir
+              </a>
+              <a href="{% url 'delete_file' fichier.id %}" class="btn btn-sm btn-outline-danger">
+                <i class="bi bi-trash"></i> Supprimer
+              </a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="5" class="text-center text-muted py-4">Aucun fichier trouvé.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

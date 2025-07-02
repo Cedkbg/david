@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Téléversement de Fichier{% endblock %}
+
+{% block content %}
+<div class="container py-5 d-flex justify-content-center align-items-center min-vh-100">
+
+  <div class="card shadow-lg border-0 p-4" style="max-width: 550px; width: 100%; border-radius: 1.5rem;">
+
+    <!-- Bouton de retour -->
+    <div class="mb-4">
+      <a href="{% url 'dashboard' %}" class="btn btn-outline-primary btn-sm">
+        <i class="bi bi-arrow-left"></i> Retour au Dashboard
+      </a>
+    </div>
+
+    <!-- En-tête -->
+    <h2 class="fw-bold text-primary mb-1">📤 Téléverser un Fichier</h2>
+    <p class="text-muted mb-4 small">Ajoutez un fichier pour analyse économique via le modèle ARDL.</p>
+
+    <!-- Formulaire -->
+    <form method="POST" enctype="multipart/form-data" novalidate>
+      {% csrf_token %}
+
+      <div class="mb-3">
+        <label class="form-label">Nom du fichier</label>
+        {{ form.nom|add_class:"form-control rounded-pill shadow-sm" }}
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Observation</label>
+        {{ form.observation|add_class:"form-control rounded-pill shadow-sm" }}
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label">Fichier (CSV ou Excel)</label>
+        {{ form.fichier|add_class:"form-control form-control-file shadow-sm" }}
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100 rounded-pill shadow-sm fw-semibold">
+        🚀 Envoyer le fichier
+      </button>
+    </form>
+
+  </div>
+</div>
+{% endblock %}
