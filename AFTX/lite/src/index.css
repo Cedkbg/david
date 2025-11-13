@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 12%;
+
+    --primary: 215 25% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 215 20% 25%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 215 15% 50%;
+
+    --accent: 210 40% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 348 83% 58%;
+
+    --radius: 0.5rem;
+
+    /* TikTok-inspired colors */
+    --cedlite-pink: 348 83% 58%;
+    --cedlite-cyan: 180 100% 50%;
+    --cedlite-dark: 0 0% 8%;
+    --cedlite-dark-elevated: 0 0% 12%;
+    --cedlite-text-primary: 0 0% 95%;
+    --cedlite-text-secondary: 0 0% 65%;
+  }
+
+  .dark {
+    --background: 215 28% 12%;
+    --foreground: 210 10% 95%;
+
+    --card: 215 25% 16%;
+    --card-foreground: 210 10% 95%;
+
+    --popover: 215 25% 16%;
+    --popover-foreground: 210 10% 95%;
+
+    --primary: 210 50% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 215 25% 20%;
+    --secondary-foreground: 210 10% 95%;
+
+    --muted: 215 25% 20%;
+    --muted-foreground: 210 10% 70%;
+
+    --accent: 210 50% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 215 20% 25%;
+    --input: 215 20% 25%;
+    --ring: 210 50% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
